@@ -2,6 +2,7 @@ package com.wangbin.websocket.chat.websocket;
 
 import com.wangbin.websocket.chat.model.Message;
 
+import javax.websocket.OnClose;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
@@ -33,7 +34,7 @@ public class ChatSocket {
         this.names.add(username);
         this.sessions.add(session);
 
-        // 构建message
+        // 构建登入message
         String msg = "欢迎" + this.username + "进入聊天室!!<br/>";
         Message message = new Message();
         // 欢迎学习
@@ -44,7 +45,22 @@ public class ChatSocket {
         this.broadcast(sessions, message.toJson());
     }
 
-    public void broadcast(List<Session> ss, String msg) {
+    @OnClose
+    public void close(Session session){
+        this.sessions.remove(session);
+        this.names.remove(username);
+
+        // 构建退出message
+        String msg = "再见"+this.username+"离开聊天室!!<br/>";
+        Message message = new Message();
+        message.setUsernames(names);
+        message.setWelcome(msg);
+
+        this.broadcast(this.sessions,message.toJson());
+    }
+
+    // 广播消息方法
+    private void broadcast(List<Session> ss, String msg) {
 
         for (Iterator iterator = ss.iterator(); iterator.hasNext(); ) {
             Session session = (Session) iterator.next();
