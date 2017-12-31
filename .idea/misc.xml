@@ -41,15 +41,6 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="localRepository" value="D:\softInstall\repository\myrepository" />
-        <option name="mavenHome" value="D:/softInstall/apache-maven-3.0.5" />
-        <option name="userSettingsFile" value="D:\softInstall\repository\settings.xml" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
       <profile-state>

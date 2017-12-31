@@ -13,7 +13,6 @@
 <body>
 <div id="container" style="border: 1px solid black;width: 400px;height: 400px;float: left">
     <div id="content" style="height: 350px;">
-
     </div>
     <div style="border-top: 1px solid black;width: 400px;height: 50px;">
         <input id="msg"/>
@@ -46,9 +45,10 @@
         ws.onmessage=function(event){
             eval("var msg="+event.data+";");
             if(undefined!=msg.welcome){
-                $("#content").append(msg.welcome+"<br/>");
-                if(undefined!=msg.names){
-                    $(msg.names).each(function(){
+                $("#content").append(msg.welcome);
+                if(undefined!=msg.usernames){
+                    $("#userList").html('');
+                    $(msg.usernames).each(function(){
                         $("#userList").append(this+"<br/>");
                     });
                 }
